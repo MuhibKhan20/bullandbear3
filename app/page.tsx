@@ -6,6 +6,7 @@ import { SyncLearning } from "@/components/sync-learning"
 import { StrategyBuilder } from "@/components/strategy-builder"
 import { TradingJournal } from "@/components/trading-journal"
 import { TeamSection } from "@/components/team-section"
+import { CommandCrew } from "@/components/command-crew"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <Navigation />
       {/* The HeroCarousel now handles its own height/spacing for the 3D scroll system */}
       <HeroCarousel />
+      <CommandCrew />
       <div className="relative z-10">
         <PowerSlide />
         <GameSection />

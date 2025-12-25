@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import { Zap, Target, Swords, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 const PILLARS = [
   {
@@ -14,6 +15,7 @@ const PILLARS = [
     description: "Learn together. Execute together.",
     icon: Zap,
     color: "neon-green",
+    image: "/img1.jpg",
     stats: [
       { label: "SYNC RATE", value: "98.2%" },
       { label: "MENTORS", value: "142" },
@@ -25,6 +27,7 @@ const PILLARS = [
     description: "Forge signals into weapons.",
     icon: Target,
     color: "neon-blue",
+    image: "/img2.jpg",
     stats: [
       { label: "BUILDS", value: "12.4K" },
       { label: "SIM-ACC", value: "99.9%" },
@@ -36,6 +39,7 @@ const PILLARS = [
     description: "Trade against real players.",
     icon: Swords,
     color: "neon-purple",
+    image: "/img3.jpg",
     stats: [
       { label: "PLAYERS", value: "4.2K" },
       { label: "RANK", value: "S-TIER" },
@@ -110,9 +114,10 @@ function HeroCard({
   // Each card occupies a segment of the scroll range
   const range = [index - 1, index, index + 1]
 
-  const x = useTransform(scrollProgress, range, ["-50%", "0%", "50%"])
+  const x = useTransform(scrollProgress, range, ["50%", "0%", "-50%"])
   const z = useTransform(scrollProgress, range, [-200, 0, -200])
-  const rotateY = useTransform(scrollProgress, range, [45, 0, -45])
+  const zIndex = useTransform(scrollProgress, range, [0, 10, 0])
+  const rotateY = useTransform(scrollProgress, range, [-45, 0, 45])
   const opacity = useTransform(scrollProgress, range, [0.3, 1, 0.3])
   const scale = useTransform(scrollProgress, range, [0.7, 1.1, 0.7])
   const blur = useTransform(scrollProgress, range, [8, 0, 8])
@@ -153,6 +158,7 @@ function HeroCard({
       style={{
         x,
         z,
+        zIndex,
         rotateY,
         opacity,
         scale,
@@ -168,62 +174,24 @@ function HeroCard({
       )}
     >
       {/* Inner HUD UI */}
-      <div className="relative h-full w-full rounded-lg overflow-hidden flex flex-row p-3 sm:p-4 md:p-6 gap-2 sm:gap-4 md:gap-6 bg-black">
-        {/* Themed Color Background */}
-        <div className={cn("absolute inset-0", colors.innerBg)} />
+      <div className="relative h-full w-full rounded-lg overflow-hidden bg-black">
+        {/* Image */}
+        <Image
+          src={pillar.image}
+          alt={pillar.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 280px, (max-width: 768px) 400px, (max-width: 1024px) 500px, (max-width: 1280px) 600px, 700px"
+        />
 
-        {/* Decorative Grid - Hidden on mobile for performance */}
-        <div className="absolute inset-0 grid-cyber opacity-10 group-hover:opacity-20 transition-opacity will-change-[opacity] hidden sm:block" />
-
-        {/* Scanline Effect - Reduced on mobile */}
-        <div className="absolute inset-0 pointer-events-none bg-scanline opacity-[0.02] sm:opacity-[0.03] animate-scan will-change-[transform]" />
-
-        {/* LEFT SIDE - ICON & ID */}
-        <div className="flex flex-col justify-between items-start relative z-10 min-w-[50px] sm:min-w-[60px] md:min-w-[80px]">
-          <div className="flex flex-col">
-            <span className={cn("text-[8px] sm:text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase", colors.text)}>
-              MODE {pillar.id}
-            </span>
-            <div className={cn("h-[1.5px] sm:h-[2px] w-6 sm:w-8 mt-0.5 sm:mt-1", colors.bg)} />
-          </div>
-          <pillar.icon className={cn("w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12", colors.text)} />
-        </div>
-
-        {/* CENTER CONTENT */}
-        <div className="flex-grow flex flex-col justify-center relative z-10 min-w-0">
-          <motion.h2
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black tracking-tighter leading-none mb-1.5 sm:mb-2 md:mb-3 will-change-transform"
-            style={{
-              rotateX: mousePos.y * -10,
-              rotateY: mousePos.x * 10,
-            }}
-          >
-            {pillar.title}
-          </motion.h2>
-          <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-muted-foreground uppercase tracking-widest font-bold border-l border-l-2 border-white/20 pl-2 sm:pl-3 md:pl-4 py-0.5 sm:py-1">
-            {pillar.description}
-          </p>
-        </div>
-
-        {/* RIGHT SIDE - STATS */}
-        <div className="relative z-10 flex items-center border-l border-white/10 pl-2 sm:pl-4 md:pl-6 min-w-[80px] sm:min-w-[120px] md:min-w-[160px] lg:min-w-[180px]">
-          <div className="grid grid-cols-1 gap-2 sm:gap-3 md:gap-4">
-            {pillar.stats.map((stat, i) => (
-              <div key={i} className="space-y-0.5 sm:space-y-1">
-                <div className="text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] text-muted-foreground uppercase font-black tracking-widest">
-                  {stat.label}
-                </div>
-                <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold tracking-tighter">{stat.value}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Overlay for better visibility */}
+        <div className="absolute inset-0 bg-black/20" />
 
         {/* Cyber accents */}
-        <div className="absolute top-1 sm:top-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-l border-white/20" />
-        <div className="absolute top-1 sm:top-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-r border-white/20" />
-        <div className="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-l border-white/20" />
-        <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-r border-white/20" />
+        <div className="absolute top-1 sm:top-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-l border-white/20 z-10" />
+        <div className="absolute top-1 sm:top-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-r border-white/20 z-10" />
+        <div className="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-l border-white/20 z-10" />
+        <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-r border-white/20 z-10" />
       </div>
     </motion.div>
   )
