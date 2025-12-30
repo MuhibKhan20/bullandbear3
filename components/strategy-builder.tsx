@@ -4,7 +4,7 @@ import { Cpu, Layers, Settings, Zap, Play } from "lucide-react"
 
 export function StrategyBuilder() {
   return (
-    <section id="build" className="relative py-32 overflow-hidden bg-black">
+    <section id="build" className="relative py-16 overflow-hidden bg-black">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(50,150,255,0.05)_0%,transparent_70%)]" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">

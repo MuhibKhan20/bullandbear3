@@ -10,7 +10,7 @@ const recentTrades = [
 
 export function TradingJournal() {
   return (
-    <section id="journal" className="relative py-32 bg-black overflow-hidden">
+    <section id="journal" className="relative py-16 bg-black overflow-hidden">
       <div className="absolute inset-0 grid-cyber opacity-5" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">

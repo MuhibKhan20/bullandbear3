@@ -1,4 +1,5 @@
-import { Zap, Github, Twitter, MessageSquare } from "lucide-react"
+import { Github, X, MessageSquare, Linkedin, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -6,16 +7,20 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2 space-y-6">
-            <div className="flex items-center gap-2">
-              <Zap className="w-8 h-8 text-neon-green" fill="currentColor" />
-              <span className="text-2xl font-bold tracking-tighter text-white uppercase">TRADINGVERSE</span>
+            <div className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Bull and Bear Logo"
+                width={150}
+                height={40}
+              />
             </div>
             <p className="text-muted-foreground max-w-sm">
               The next evolution of competitive trading. Built for the elite, powered by the community, fueled by the
               grid.
             </p>
             <div className="flex gap-4">
-              {[Twitter, Github, MessageSquare].map((Icon, i) => (
+              {[X, Github, Linkedin, Instagram, Youtube, MessageSquare].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
@@ -28,29 +33,25 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold text-sm uppercase tracking-widest text-white mb-6">Sectors</h4>
-            <ul className="space-y-4 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-neon-green transition-colors">
-                  The Arena
+            <h4 className="font-bold text-sm uppercase tracking-widest text-white mb-6">Contact Us</h4>
+            <div className="space-y-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-neon-green" />
+                <a href="mailto:contact@bullandbear.com" className="hover:text-white transition-colors">
+                  contact@bullandbear.com
                 </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-neon-purple transition-colors">
-                  Sync Lab
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-neon-green" />
+                <a href="tel:+1234567890" className="hover:text-white transition-colors">
+                  +1 (234) 567-890
                 </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-neon-blue transition-colors">
-                  Strategy Forge
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-neon-pink transition-colors">
-                  Data Log
-                </a>
-              </li>
-            </ul>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-neon-green" />
+                <span>San Francisco, CA 94102</span>
+              </div>
+            </div>
           </div>
 
           <div>
@@ -76,7 +77,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-          <div>© 2025 TRADINGVERSE_OS. ALL RIGHTS RESERVED.</div>
+          <div>© 2025 BULLINBEAR. ALL RIGHTS RESERVED.</div>
           <div className="flex gap-8">
             <a href="#" className="hover:text-white">
               Privacy_Kernel

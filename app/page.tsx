@@ -15,7 +15,7 @@ export default function Home() {
       <Navigation />
       {/* The HeroCarousel now handles its own height/spacing for the 3D scroll system */}
       <HeroCarousel />
-      <CommandCrew />
+      {/* <CommandCrew /> */}
       <div className="relative z-10">
         <PowerSlide />
         <GameSection />

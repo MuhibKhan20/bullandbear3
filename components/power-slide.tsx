@@ -35,12 +35,12 @@ export function PowerSlide() {
   }, [])
 
   return (
-    <section className="relative py-12 bg-black border-y border-neon-green/10 overflow-hidden">
+    <section className="relative bg-black overflow-hidden">
       <div className="absolute inset-0 grid-cyber opacity-10" />
 
       <div
         ref={scrollRef}
-        className="flex gap-8 whitespace-nowrap overflow-hidden py-4"
+        className="flex gap-8 whitespace-nowrap overflow-hidden"
         style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
       >
         {/* Doubled list for seamless looping */}

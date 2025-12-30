@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Rajdhani } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 // <CHANGE> Using Rajdhani for aggressive, condensed, futuristic look
@@ -11,9 +10,8 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: 'Tradingverse - Enter The Future of Competitive Trading',
+  title: 'BULL AND BEAR',
   description: 'High-end gaming platform for competitive traders. Build strategies, compete PvP, sync learning, and dominate the leaderboards.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
@@ -42,7 +40,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${rajdhani.className} font-sans antialiased`}>
         {children}
-        <Analytics />
       </body>
     </html>
   )
