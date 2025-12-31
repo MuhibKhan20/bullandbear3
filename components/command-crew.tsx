@@ -1,6 +1,8 @@
 "use client"
 import { Gamepad2, Zap, Target, Swords } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
 
 const crew = [
   {
@@ -11,7 +13,8 @@ const crew = [
       { label: "MENTORS", value: "142" },
     ],
     icon: Zap,
-    color: "neon-green"
+    color: "neon-green",
+    image: "/img1.jpg"
   },
   {
     name: "STRATEGY LAB",
@@ -21,7 +24,8 @@ const crew = [
       { label: "SIM-ACC", value: "99.9%" },
     ],
     icon: Target,
-    color: "neon-blue"
+    color: "neon-blue",
+    image: "/img2.jpg"
   },
   {
     name: "VIDEO GAME",
@@ -31,7 +35,8 @@ const crew = [
       { label: "RANK", value: "S-TIER" },
     ],
     icon: Swords,
-    color: "neon-purple"
+    color: "neon-purple",
+    image: "/img3.jpg"
   },
   {
     name: "TRADE JOURNAL",
@@ -41,7 +46,8 @@ const crew = [
       { label: "WIN RATE", value: "74%" },
     ],
     icon: Gamepad2,
-    color: "neon-pink"
+    color: "neon-pink",
+    image: "/futuristic-pvp-trading-hud-arena.jpg"
   },
 ]
 
@@ -96,8 +102,28 @@ const getColorClasses = (color: string) => {
 }
 
 export function CommandCrew() {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="relative py-16 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 bg-white overflow-hidden">
       {/* Background Atmospheric Glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-blue/5 blur-[120px] rounded-full" />
@@ -112,43 +138,59 @@ export function CommandCrew() {
             {crew.map((member, i) => {
               const colors = getColorClasses(member.color)
               return (
-                <div key={i} className="flex flex-col gap-4 items-center">
+                <div
+                  key={i}
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                  className={cn(
+                    "flex flex-col gap-4 items-center transition-all duration-700",
+                    isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-90'
+                  )}
+                >
                   <div
                     className={cn(
-                      "group relative w-full aspect-[3/4] rounded-lg sm:rounded-xl border-2 transition-all cursor-pointer",
+                      "group relative w-full aspect-[3/4] rounded-lg sm:rounded-xl border-2 transition-all duration-500 cursor-pointer hover:scale-105 hover:-translate-y-2",
                       colors.border,
                       colors.shadow,
                       colors.cardBg
                     )}
                   >
                     {/* Inner HUD UI */}
-                    <div className="relative h-full w-full rounded-lg overflow-hidden flex flex-col p-4 sm:p-6 gap-4 bg-white">
-                      {/* Themed Color Background */}
-                      <div className={cn("absolute inset-0", colors.innerBg)} />
+                    <div className="relative h-full w-full rounded-lg overflow-hidden flex flex-col p-4 sm:p-6 gap-4">
+                      {/* Background Image - Always visible */}
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        priority
+                      />
+
+                      {/* Black/Gray Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30 z-[1]" />
 
                       {/* Decorative Grid */}
-                      <div className="absolute inset-0 grid-cyber opacity-10 group-hover:opacity-20 transition-opacity" />
+                      <div className="absolute inset-0 grid-cyber opacity-10 group-hover:opacity-20 transition-opacity z-[2]" />
 
                       {/* Scanline Effect */}
-                      <div className="absolute inset-0 pointer-events-none bg-scanline opacity-[0.03] animate-scan" />
+                      <div className="absolute inset-0 pointer-events-none bg-scanline opacity-[0.03] animate-scan z-[2]" />
 
                       {/* TOP - ICON */}
-                      <div className="flex flex-col items-center relative z-10 flex-grow justify-center">
+                      <div className="flex flex-col items-center relative z-[3] flex-grow justify-center">
                         <member.icon className={cn("w-20 h-20 sm:w-24 sm:h-24 mb-6", colors.text)} />
-                        <h3 className="text-2xl sm:text-3xl font-black tracking-tighter leading-none mb-2 text-center">
+                        <h3 className="text-2xl sm:text-3xl font-black tracking-tighter leading-none mb-2 text-center text-white">
                           {member.name}
                         </h3>
-                        <p className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-widest font-bold text-center px-4">
+                        <p className="text-[9px] sm:text-[10px] text-gray-300 uppercase tracking-widest font-bold text-center px-4">
                           {member.description}
                         </p>
                       </div>
 
                       {/* BOTTOM - STATS */}
-                      <div className="relative z-10 border-t border-black/10 pt-4">
+                      <div className="relative z-[3] border-t border-white/20 pt-4">
                         <div className="grid grid-cols-2 gap-4">
                           {member.stats.map((stat, i) => (
                             <div key={i} className="space-y-1">
-                              <div className="text-[8px] sm:text-[9px] text-muted-foreground uppercase font-black tracking-widest">
+                              <div className="text-[8px] sm:text-[9px] text-gray-400 uppercase font-black tracking-widest">
                                 {stat.label}
                               </div>
                               <div className={cn("text-lg sm:text-xl font-bold tracking-tighter", colors.text)}>
@@ -160,10 +202,10 @@ export function CommandCrew() {
                       </div>
 
                       {/* Cyber accents */}
-                      <div className="absolute top-1 sm:top-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-l border-black/20" />
-                      <div className="absolute top-1 sm:top-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-r border-black/20" />
-                      <div className="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-l border-black/20" />
-                      <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-r border-black/20" />
+                      <div className="absolute top-1 sm:top-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-l border-white/30 z-[3]" />
+                      <div className="absolute top-1 sm:top-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-t border-r border-white/30 z-[3]" />
+                      <div className="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-l border-white/30 z-[3]" />
+                      <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 border-b border-r border-white/30 z-[3]" />
                     </div>
                   </div>
 

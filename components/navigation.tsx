@@ -32,7 +32,6 @@ function CubeLink({ label, href = "#" }: CubeLinkProps) {
           className="
             block h-6 leading-6
             text-gray-700
-            bg-gradient-to-r from-transparent via-black/5 to-transparent
             [backface-visibility:hidden]
           "
           style={{
