@@ -11,7 +11,7 @@ import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-black">
+    <main className="relative min-h-screen bg-white">
       <Navigation />
       {/* The HeroCarousel now handles its own height/spacing for the 3D scroll system */}
             {/* 2 */}

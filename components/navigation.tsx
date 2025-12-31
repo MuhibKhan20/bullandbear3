@@ -31,8 +31,8 @@ function CubeLink({ label, href = "#" }: CubeLinkProps) {
         <span
           className="
             block h-6 leading-6
-            text-gray-300
-            bg-gradient-to-r from-transparent via-white/5 to-transparent
+            text-gray-700
+            bg-gradient-to-r from-transparent via-black/5 to-transparent
             [backface-visibility:hidden]
           "
           style={{
@@ -46,7 +46,7 @@ function CubeLink({ label, href = "#" }: CubeLinkProps) {
         <span
           className="
             absolute left-0 top-0 h-6 leading-6 w-full
-            text-white
+            text-black
             [backface-visibility:hidden]
           "
           style={{
@@ -73,8 +73,8 @@ function CubeLink({ label, href = "#" }: CubeLinkProps) {
         <span
           className="
             absolute left-0 top-0 h-6 leading-6 w-full
-            text-gray-600
-            bg-black/30
+            text-gray-400
+            bg-gray-50
             [backface-visibility:hidden]
           "
           style={{
@@ -90,12 +90,12 @@ function CubeLink({ label, href = "#" }: CubeLinkProps) {
 
 export function Navigation() {
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/50 backdrop-blur-md">
+    <nav className="fixed top-0 w-full z-50 border-b border-black/10 bg-white backdrop-blur-md">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         
         <div className="flex items-center h-10">
           <Image
-            src="/logo.png"
+            src="/BULLINBEAR.png"
             alt="Bull and Bear Logo"
             width={150}
             height={40}

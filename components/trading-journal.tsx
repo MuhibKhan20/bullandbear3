@@ -96,7 +96,7 @@ export function TradingJournal() {
   const currentTrader = tradersData[currentTraderIndex]
 
   return (
-    <section ref={sectionRef} id="journal" className="relative py-12 bg-black overflow-hidden">
+    <section ref={sectionRef} id="journal" className="relative py-12 bg-white overflow-hidden">
       <div className="absolute inset-0 grid-cyber opacity-5" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -121,10 +121,10 @@ export function TradingJournal() {
             <div className="relative bg-card border-2 border-neon-pink/30 rounded-2xl overflow-hidden backdrop-blur-xl hover:border-neon-pink/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(255,20,147,0.3)]">
 
               {/* Header with Live Indicator */}
-              <div className="p-4 border-b border-white/10 bg-black/60 flex justify-between items-center">
+              <div className="p-4 border-b border-black/10 bg-gray-100 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-neon-pink animate-pulse" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">
+                  <span className="text-[10px] font-bold text-black uppercase tracking-widest">
                     LIVE TRADING ANALYTICS
                   </span>
                 </div>
@@ -147,7 +147,7 @@ export function TradingJournal() {
                       </div>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-xs font-bold text-white mb-0.5 transition-all duration-500 truncate">{currentTrader.name}</div>
+                      <div className="text-xs font-bold text-black mb-0.5 transition-all duration-500 truncate">{currentTrader.name}</div>
                       <div className="flex items-center gap-2 text-[9px]">
                         <span className="text-muted-foreground">RANK #{currentTrader.rank}</span>
                         <span className="text-neon-green font-bold">{currentTrader.profit}</span>
@@ -161,9 +161,9 @@ export function TradingJournal() {
                 </div>
 
                 {/* Real-time Animated Graph */}
-                <div className="bg-black/40 border border-white/5 rounded-xl p-3">
+                <div className="bg-gray-100 border border-black/5 rounded-xl p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[9px] font-bold text-white uppercase tracking-widest">Performance Chart</span>
+                    <span className="text-[9px] font-bold text-black uppercase tracking-widest">Performance Chart</span>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
                       <span className="text-[7px] text-muted-foreground">Real-time</span>
@@ -182,7 +182,7 @@ export function TradingJournal() {
                           animationDelay: `${i * 20}ms`
                         }}
                       >
-                        <div className="absolute -top-5 left-1/2 -translate-x-1/2 opacity-0 group-hover/bar:opacity-100 transition-opacity text-[7px] font-bold text-white whitespace-nowrap">
+                        <div className="absolute -top-5 left-1/2 -translate-x-1/2 opacity-0 group-hover/bar:opacity-100 transition-opacity text-[7px] font-bold text-black whitespace-nowrap">
                           {point.isGreen ? '+' : '-'}{Math.floor(point.y)}%
                         </div>
                       </div>
@@ -197,19 +197,19 @@ export function TradingJournal() {
 
                 {/* Live Stats Grid */}
                 <div className="grid grid-cols-3 gap-2">
-                  <div className="p-2.5 bg-white/5 rounded border border-white/5 hover:border-neon-green/40 transition-all duration-500 hover:scale-110 hover:bg-white/10">
+                  <div className="p-2.5 bg-gray-50 rounded border border-black/5 hover:border-neon-green/40 transition-all duration-500 hover:scale-110 hover:bg-gray-100">
                     <div className="text-[7px] text-muted-foreground uppercase font-bold mb-0.5">WIN RATE</div>
                     <div className="text-lg font-bold tracking-tighter text-neon-green transition-all duration-500">
                       {liveStats.winRate.toFixed(1)}%
                     </div>
                   </div>
-                  <div className="p-2.5 bg-white/5 rounded border border-white/5 hover:border-neon-green/40 transition-all duration-500 hover:scale-110 hover:bg-white/10">
+                  <div className="p-2.5 bg-gray-50 rounded border border-black/5 hover:border-neon-green/40 transition-all duration-500 hover:scale-110 hover:bg-gray-100">
                     <div className="text-[7px] text-muted-foreground uppercase font-bold mb-0.5">PROFIT</div>
                     <div className="text-lg font-bold tracking-tighter text-neon-green transition-all duration-500">
                       +{liveStats.profit.toFixed(1)}%
                     </div>
                   </div>
-                  <div className="p-2.5 bg-white/5 rounded border border-white/5 hover:border-neon-pink/40 transition-all duration-500 hover:scale-110 hover:bg-white/10">
+                  <div className="p-2.5 bg-gray-50 rounded border border-black/5 hover:border-neon-pink/40 transition-all duration-500 hover:scale-110 hover:bg-gray-100">
                     <div className="text-[7px] text-muted-foreground uppercase font-bold mb-0.5">DRAWDN</div>
                     <div className="text-lg font-bold tracking-tighter text-neon-pink transition-all duration-500">
                       {liveStats.drawdown.toFixed(1)}%
@@ -218,7 +218,7 @@ export function TradingJournal() {
                 </div>
 
                 {/* Auto-sync indicator */}
-                <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+                <div className="pt-2 border-t border-black/10 flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-[9px] text-neon-green">
                     <div className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
                     <span className="font-bold uppercase tracking-widest">AUTO-SYNC ACTIVE</span>
@@ -253,7 +253,7 @@ export function TradingJournal() {
                 { icon: Users, title: "Accountability", desc: "Compare performance in real-time." },
                 { icon: Camera, title: "Picture Tags", desc: "Tag models for instant access." },
               ].map((feature, i) => (
-                <div key={i} className={`flex gap-3 p-3 rounded-lg border border-white/5 bg-white/5 hover:border-neon-pink/40 hover:bg-white/10 transition-all duration-500 hover:scale-105 ${isVisible ? 'animate-[slideUp_0.8s_ease-out_forwards]' : 'opacity-0'}`} style={{ animationDelay: `${500 + i * 100}ms` }}>
+                <div key={i} className={`flex gap-3 p-3 rounded-lg border border-black/5 bg-gray-50 hover:border-neon-pink/40 hover:bg-gray-100 transition-all duration-500 hover:scale-105 ${isVisible ? 'animate-[slideUp_0.8s_ease-out_forwards]' : 'opacity-0'}`} style={{ animationDelay: `${500 + i * 100}ms` }}>
                   <feature.icon className="w-5 h-5 text-neon-pink shrink-0" />
                   <div>
                     <h3 className="font-bold uppercase text-xs mb-0.5 tracking-tight">{feature.title}</h3>
@@ -271,7 +271,7 @@ export function TradingJournal() {
         </div>
 
         {/* New Social & Analytics Features Section */}
-        <div className={`grid md:grid-cols-3 gap-4 pt-8 border-t border-white/10 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+        <div className={`grid md:grid-cols-3 gap-4 pt-8 border-t border-black/10 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <div className="p-4 rounded-xl border border-neon-pink/20 bg-gradient-to-br from-neon-pink/5 to-transparent hover:border-neon-pink/40 transition-all duration-500 hover:scale-105 group">
             <Share2 className="w-6 h-6 text-neon-pink mb-2 group-hover:rotate-12 transition-transform duration-500" />
             <h3 className="font-bold uppercase text-sm mb-1 tracking-tight">Social Trading</h3>
@@ -303,7 +303,7 @@ export function TradingJournal() {
               <stat.icon className="w-4 h-4 text-neon-pink group-hover:rotate-12 transition-transform duration-500" />
               <div className="text-left">
                 <div className="text-[10px] text-muted-foreground uppercase tracking-wider">{stat.label}</div>
-                <div className="text-xs font-bold text-white">{stat.value}</div>
+                <div className="text-xs font-bold text-black">{stat.value}</div>
               </div>
             </div>
           ))}

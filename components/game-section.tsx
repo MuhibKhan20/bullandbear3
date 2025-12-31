@@ -36,47 +36,47 @@ export function GameSection() {
           {/* Visual Side - Video Game UI */}
           <div className={`relative order-2 lg:order-1 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
             <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-neon-purple glow-purple bg-gradient-to-br from-purple-950/50 to-blue-950/50 hover:scale-[1.02] transition-transform duration-300">
-              <div className="absolute inset-0 bg-[url('/section3.png')] bg-cover bg-center opacity-40 hover:opacity-60 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-[url('/section3.png')] bg-cover bg-center opacity-60 transition-opacity duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
               {/* Game HUD - Top Bar */}
               <div className={`absolute top-4 left-4 right-4 flex items-center justify-between transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-                <div className="flex items-center gap-2 px-3 py-1 bg-black/90 border border-neon-purple/60 rounded text-xs font-bold tracking-widest hover:border-neon-purple hover:scale-105 transition-all duration-300">
+                <div className="flex items-center gap-2 px-3 py-1 bg-white/90 border border-neon-purple/60 rounded text-xs font-bold tracking-widest hover:border-neon-purple hover:scale-105 transition-all duration-300">
                   <Gamepad2 className="w-3 h-3 text-neon-purple animate-pulse" />
                   <span className="text-neon-purple">PvP MODE</span>
                   <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse ml-2" />
                 </div>
-                <div className="px-3 py-1 bg-black/90 border border-yellow-500/60 rounded text-xs font-bold hover:scale-110 transition-transform duration-300">
+                <div className="px-3 py-1 bg-white/90 border border-yellow-500/60 rounded text-xs font-bold hover:scale-110 transition-transform duration-300">
                   <span className="text-yellow-500 animate-pulse">⏱ 02:45</span>
                 </div>
               </div>
 
               {/* Player Stats - Gaming Style */}
               <div className={`absolute bottom-4 left-4 right-4 flex gap-3 transition-all duration-700 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <div className="flex-1 bg-black/90 border-2 border-neon-green rounded-lg p-3 hover:border-neon-green/100 hover:scale-105 hover:shadow-lg hover:shadow-neon-green/50 transition-all duration-300">
+                <div className="flex-1 bg-white/90 border-2 border-neon-green rounded-lg p-3 hover:border-neon-green/100 hover:scale-105 hover:shadow-lg hover:shadow-neon-green/50 transition-all duration-300">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-[10px] text-muted-foreground uppercase font-bold">YOU</span>
                     <Trophy className="w-3 h-3 text-yellow-500 animate-bounce" />
                   </div>
                   <div className="text-neon-green font-bold text-lg animate-pulse">+$4,290</div>
-                  <div className="w-full bg-black/50 h-1.5 rounded-full mt-1 overflow-hidden">
+                  <div className="w-full bg-gray-100 h-1.5 rounded-full mt-1 overflow-hidden">
                     <div className="bg-neon-green h-full w-3/4 rounded-full animate-pulse shadow-lg shadow-neon-green/50" />
                   </div>
                 </div>
-                <div className="flex-1 bg-black/90 border-2 border-red-500/60 rounded-lg p-3 hover:border-red-500 hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300">
+                <div className="flex-1 bg-white/90 border-2 border-red-500/60 rounded-lg p-3 hover:border-red-500 hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-[10px] text-muted-foreground uppercase font-bold">OPPONENT</span>
                     <Target className="w-3 h-3 text-red-500 animate-spin" style={{ animationDuration: '3s' }} />
                   </div>
                   <div className="text-red-500 font-bold text-lg">-$1,120</div>
-                  <div className="w-full bg-black/50 h-1.5 rounded-full mt-1 overflow-hidden">
+                  <div className="w-full bg-gray-100 h-1.5 rounded-full mt-1 overflow-hidden">
                     <div className="bg-red-500 h-full w-1/3 rounded-full" />
                   </div>
                 </div>
               </div>
 
               {/* Achievement Notification */}
-              <div className={`absolute top-20 right-4 px-4 py-2 bg-black/95 border border-yellow-500/80 rounded-lg shadow-lg transition-all duration-500 delay-900 hover:scale-110 hover:shadow-yellow-500/50 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+              <div className={`absolute top-20 right-4 px-4 py-2 bg-white/90 border border-yellow-500/80 rounded-lg shadow-lg transition-all duration-500 delay-900 hover:scale-110 hover:shadow-yellow-500/50 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
                 <div className="flex items-center gap-2">
                   <div className="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-500/20">
                     <Trophy className="w-5 h-5 text-yellow-500" />
@@ -132,7 +132,7 @@ export function GameSection() {
             <div className="flex flex-col sm:flex-row gap-4 pt-2 animate-in fade-in slide-in-from-bottom duration-1000 delay-500">
               <Button
                 size="lg"
-                className="h-14 px-8 bg-neon-purple hover:bg-neon-purple/90 hover:scale-110 hover:shadow-2xl hover:shadow-neon-purple/50 text-white font-bold uppercase tracking-widest group transition-all duration-300"
+                className="h-14 px-8 bg-neon-purple hover:bg-neon-purple/90 hover:scale-110 hover:shadow-2xl hover:shadow-neon-purple/50 text-black font-bold uppercase tracking-widest group transition-all duration-300"
               >
                 <Gamepad2 className="w-5 h-5 mr-2 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300" />
                 Join PvP Match
@@ -140,8 +140,11 @@ export function GameSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-14 px-8 border-neon-blue/50 text-neon-blue hover:bg-neon-blue/10 hover:border-neon-blue hover:scale-105 hover:shadow-xl hover:shadow-neon-blue/50 font-bold uppercase tracking-widest group transition-all duration-300"
-              >
+                className="h-14 px-8 border-neon-blue/50 text-neon-blue 
+         hover:bg-neon-blue/10 hover:border-neon-blue 
+         hover:scale-105 hover:shadow-xl hover:shadow-neon-blue/50 
+         hover:text-neon-blue font-bold uppercase tracking-widest 
+         group transition-all duration-300"              >
                 <Target className="w-5 h-5 mr-2 group-hover:scale-125 transition-transform duration-300" />
                 Start Training
               </Button>

@@ -37,7 +37,7 @@ export function SyncLearning() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="learn" className="relative py-16 bg-black/50 overflow-hidden">
+    <section ref={sectionRef} id="learn" className="relative py-16 bg-white overflow-hidden">
       <div className="absolute inset-0 grid-cyber opacity-5" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -72,14 +72,14 @@ export function SyncLearning() {
                   {activeStreams.map((stream) => (
                     <div
                       key={stream.id}
-                      className="group flex items-center justify-between p-4 bg-black/40 border border-white/5 rounded-lg hover:border-neon-purple/40 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                      className="group flex items-center justify-between p-4 bg-white border border-black/10 rounded-lg hover:border-neon-purple/40 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
                     >
                       <div className="flex items-center gap-4">
                         <div className="relative">
                           <div className="w-10 h-10 rounded bg-neon-purple/20 flex items-center justify-center">
                             <Users className="w-5 h-5 text-neon-purple" />
                           </div>
-                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-neon-green rounded-full border-2 border-black animate-pulse" />
+                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-neon-green rounded-full border-2 border-white animate-pulse" />
                         </div>
                         <div>
                           <div className="font-bold tracking-tight uppercase group-hover:text-neon-purple transition-colors">
