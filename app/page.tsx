@@ -14,14 +14,22 @@ export default function Home() {
     <main className="relative min-h-screen bg-black">
       <Navigation />
       {/* The HeroCarousel now handles its own height/spacing for the 3D scroll system */}
+            {/* 2 */}
+
       <HeroCarousel />
-      {/* <CommandCrew /> */}
+       <CommandCrew /> 
+         
       <div className="relative z-10">
         <PowerSlide />
+              {/* 3 */}
         <GameSection />
+              {/* 4 */}
         <SyncLearning />
+              {/* 5 */}
         <StrategyBuilder />
-        <TradingJournal />
+              {/* 6 */}
+        <TradingJournal />  
+          {/* 7 */}
         <TeamSection />
       </div>
       <Footer />

@@ -1,16 +1,38 @@
 "use client"
 
 import { Cpu, Layers, Settings, Zap, Play } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 export function StrategyBuilder() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="build" className="relative py-16 overflow-hidden bg-black">
+    <section ref={sectionRef} id="build" className="relative py-16 overflow-hidden bg-black">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(50,150,255,0.05)_0%,transparent_70%)]" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue text-xs font-bold tracking-widest uppercase">
+          {/* Text Side - Left - with slide from left animation */}
+          <div className={`space-y-8 transition-all duration-1200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue text-xs font-bold tracking-widest uppercase animate-pulse">
               <Cpu className="w-3 h-3" /> Strat-Gen Engine
             </div>
 
@@ -32,7 +54,8 @@ export function StrategyBuilder() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-4 p-4 bg-white/5 border border-white/5 rounded-lg group hover:border-neon-blue/40 transition-colors"
+                  className={`flex items-center gap-4 p-4 bg-white/5 border border-white/5 rounded-lg group hover:border-neon-blue/40 transition-all duration-500 hover:scale-105 ${isVisible ? 'animate-[slideUp_0.8s_ease-out_forwards]' : 'opacity-0'}`}
+                  style={{ animationDelay: `${400 + i * 150}ms` }}
                 >
                   <item.icon className="w-6 h-6 text-neon-blue" />
                   <span className="font-bold uppercase tracking-tight group-hover:text-white transition-colors">
@@ -43,15 +66,15 @@ export function StrategyBuilder() {
             </div>
           </div>
 
-          {/* Strategy Visualizer */}
-          <div className="relative group">
+          {/* Strategy Visualizer - Right - with slide from right animation */}
+          <div className={`relative group transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-20 scale-95'}`}>
             <div className="absolute inset-0 bg-neon-blue/20 blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity" />
-            <div className="relative bg-card border-2 border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative bg-card border-2 border-white/10 rounded-2xl overflow-hidden shadow-2xl hover:border-neon-blue/40 hover:shadow-[0_0_50px_rgba(50,150,255,0.3)] transition-all duration-500">
               <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/40">
                 <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                  <div className="w-3 h-3 rounded-full bg-neon-green/50" />
+                  <div className="w-3 h-3 rounded-full bg-red-500/50 animate-pulse" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/50 animate-pulse delay-150" />
+                  <div className="w-3 h-3 rounded-full bg-neon-green/50 animate-pulse delay-300" />
                 </div>
                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
                   STRATEGY_DEVEL_V2.0
@@ -59,29 +82,29 @@ export function StrategyBuilder() {
               </div>
 
               <div className="p-8 space-y-6 bg-black/80">
-                <div className="flex gap-4">
-                  <div className="flex-1 p-4 rounded border border-neon-blue/30 bg-neon-blue/5">
+                <div className={`flex gap-4 transition-all duration-800 ${isVisible ? 'animate-[slideUp_0.8s_ease-out_forwards]' : 'opacity-0'}`} style={{ animationDelay: '600ms' }}>
+                  <div className="flex-1 p-4 rounded border border-neon-blue/30 bg-neon-blue/5 hover:border-neon-blue/50 hover:bg-neon-blue/10 transition-all duration-300">
                     <div className="text-[10px] text-neon-blue font-bold uppercase mb-2">ENTRY_TRIGGER</div>
-                    <div className="h-8 bg-white/5 rounded border border-white/10" />
+                    <div className="h-8 bg-white/5 rounded border border-white/10 animate-pulse" />
                   </div>
                   <div className="flex-none flex items-center">
-                    <Zap className="text-neon-blue w-4 h-4" />
+                    <Zap className="text-neon-blue w-4 h-4 animate-pulse" />
                   </div>
-                  <div className="flex-1 p-4 rounded border border-neon-purple/30 bg-neon-purple/5">
+                  <div className="flex-1 p-4 rounded border border-neon-purple/30 bg-neon-purple/5 hover:border-neon-purple/50 hover:bg-neon-purple/10 transition-all duration-300">
                     <div className="text-[10px] text-neon-purple font-bold uppercase mb-2">RISK_LIMIT</div>
-                    <div className="h-8 bg-white/5 rounded border border-white/10" />
+                    <div className="h-8 bg-white/5 rounded border border-white/10 animate-pulse" />
                   </div>
                 </div>
 
-                <div className="p-4 rounded border border-white/10 bg-white/5 relative overflow-hidden group/btn">
+                <div className={`p-4 rounded border border-white/10 bg-white/5 relative overflow-hidden group/btn hover:border-neon-blue/40 hover:bg-white/10 transition-all duration-500 hover:scale-105 cursor-pointer ${isVisible ? 'animate-[slideUp_0.8s_ease-out_forwards]' : 'opacity-0'}`} style={{ animationDelay: '800ms' }}>
                   <div className="absolute inset-0 bg-neon-blue opacity-0 group-hover/btn:opacity-10 transition-opacity" />
                   <div className="text-center font-bold text-sm tracking-widest uppercase py-2">DEPLOY_TO_LIVE</div>
                 </div>
               </div>
 
-              <div className="p-4 bg-neon-blue/10 flex items-center justify-center gap-2 group-hover:bg-neon-blue transition-colors cursor-pointer">
-                <Play className="w-4 h-4 text-neon-blue group-hover:text-black" fill="currentColor" />
-                <span className="text-xs font-bold text-neon-blue group-hover:text-black uppercase tracking-widest">
+              <div className="p-4 bg-neon-blue/10 flex items-center justify-center gap-2 group-hover:bg-neon-blue transition-all duration-500 cursor-pointer hover:scale-105">
+                <Play className="w-4 h-4 text-neon-blue group-hover:text-black transition-colors" fill="currentColor" />
+                <span className="text-xs font-bold text-neon-blue group-hover:text-black uppercase tracking-widest transition-colors">
                   Run Simulation
                 </span>
               </div>
